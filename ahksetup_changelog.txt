@@ -1,0 +1,53 @@
+0.1		-initial version
+		-added GUI system
+0.2		-added language packages for fast translation
+0.3		-added installer instructions file (for build.exe)
+		-added "complete setup" step to GUI system
+		-translated to german
+0.4		-added logfile
+		-added obligatory appinfo.ini
+		-changed setup icon
+		-added "test start.ahk" for demonstrating purpose
+		-added a Testsuite with a dummy program
+0.5		-finished build.exe to use appinfo.ini as planned
+		-changed gnu_gpl files to contain templates
+		-extended language packages to current needs
+		-using .ico instead of .jpg icons
+		-changed build.exe to generate setup template initialization routine dynamically
+		-added some new features to setup template: Show licenses full text, open app website, show current file which is being extracted.
+		-setup template now shows icon of own executable file as setup icon
+		-new example with current features demonstrated in teststart.ahk
+		-expanded appinfo with information for new features
+		-added a custom setup icon to the example program
+0.6		-Installer finished! (extracting files, writing registry, creatingshortcuts) -> changes in "build" and "setup template"
+		-ep_setup.exe as example for generated fully functional setup
+1.0		-added integrated uninstaller, consisting from the unistall starter and the uninstaller
+		-added uninstaller template + uninst_start template
+		-generated a new example setup, that will automatically extract a fully functioning uninstaller besides the example program
+1.1		-automatic escaping of filenames for fileinstall
+		-fixed Ahk2Exe Error for empty files bug
+		-added ToDo list, goals for v2.0
+1.2		- time optimization by copying whole source directory and only writing instructions one by one
+		- startmenu link is now in a folder together with uninstall link
+		- fixed uninstall bug that occured when uninstall was launched via the startmenu link
+		- registry entry "NoModify" REG_DWORD instead of REG_SZ
+		- added AppID as unique application identifier (keeping registry consistent when programs display name changes)
+		- made AppAuthorEmail optional
+1.3		- added AppFileTypes, setup can now install new filetypes and modify existing filetypes while installing
+		- added AppUninstFiles, a file that holds a list of files that have to be removed by the uninstaller and can be extended by the installed app
+		- added AppUninstReg, a file that holds a list of registry keys that have to be removed by the uninstaller and can be extended by the installed app
+1.4		- added update function
+		- setup detects existing installations
+		- added portable installation (AppPortability)
+		- added custom initialization script (AppExtraInit)
+		- removed build.exe's "single mode"
+2.0		- fixed minor bugs
+		- added file remove list for updates (AppUpdateRemove)
+		- added short documentation for 2.0, covering all features
+		- user can now review the app versions changelog if available
+2.1		- installation directory for portable installations can be changed
+		- changed setup log orientation (now upwards)
+		- fixed update AppCurrentInstallDir-bug for portable installations
+		- added "Run setup as update" to documentation
+		- added smooth progressbar movement
+		- installer/uninstaller check added/removed files

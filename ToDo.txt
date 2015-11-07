@@ -1,0 +1,28 @@
+x "build": Ahk2Exe-Fehler bei Dateien mit Komma im Namen							Ahk2Exe Bug, trotz escapen nicht behebbar
+- "build": Ahk2Exe-Fehler bei leeren Dateien										gefixt
+- "build": nur Befehle schreiben, danach den gesamten Quellordner kopieren			hinzugefügt
+x als Setup-Icon sollte man auch eine Exe angeben können							zurückgenommen, nicht so einfach zu realisieren
+- Update-Funktion integrieren:
+	- Startparameter um Setup-Programme als Update starten zu lassen				hinzugefügt
+	- Lösch-Liste bei Updates														hinzugefügt
+- portable Installation integrieren:
+	- Auswahl sowohl für Hersteller und User										hinzugefügt
+	- nur Dateiextrahierung, keine Verknüpfungen, keine Registry					hinzugefügt
+	- bestehende portable Installation erkennen -> prüfen ob im Programmordner		hinzugefügt
+- Dateitypenverknüpfung & Kontextmenüeinträge durch Setup							hinzugefügt
+- Startmenü Einträge in einem Unterordner mit Uninstaller							hinzugefügt
+- Name von StartMenü-Ordner konfigurierbar durch Hersteller(Default) (und User?)	hinzugefügt
+	-> Uninstall-Aufruf über StartMenü verfügt nicht über ausreichende Rechte		gefixt
+- Registry Eintrag "NoModify" REG_DWORD statt REG_SZ								gefixt
+- Registry-ID durch Hersteller festlegbar (endeutige Applikationsbezeichn.)			hinzugefügt
+- Installer muss bei erneutem Aufruf bestehende Installation erkennen				hinzugefügt
+- Bei bestehender Installation Auswahl: Aktualisieren, Deinstallieren				hinzugefügt
+- Bei Deinstallation über Setup und fehlender Uninstall.exe -> entpacken			hinzugefügt
+- Lediglich Programmname, Version, Autor als Pflichtangaben							hinzugefügt
+- Initialisierungsskript welches bei Installation ausgeführt wird					hinzugefügt
+- Datei-/Registry-Löschliste für Deinstallation										hinzugefügt
+- Dokumentation schreiben!															hinzugefügt
+- SingleMode entfernen																entfernt
+- Changelog bei Update anzeigen lassen												hinzugefügt (kann immer angezeigt werden, wenn vorhanden)
+- Keine Verknüpfungen bei portabler Installation									gefixt
+- Zielordner bei portabler Installation auswählbar									hinzugefügt

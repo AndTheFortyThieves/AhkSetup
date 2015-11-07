@@ -1,0 +1,217 @@
+
+starting...
+Application Info:
+AppName=Example Program
+AppID=Example Program
+AppVersion=0.1
+AppUpdateVersion=0.1.5
+AppAuthorName=Max Mustermann
+AppAuthorEmailAvailable=0
+AppStdInstall=ExampleProg
+AppStartMenu=Example Program
+AppPortability=2
+AppChangelogAvailable=1
+AppChangelog=changes.txt
+AppWebsiteAvailable=1
+AppWebsite=http://example.com/
+AppUsesFileTypes=1
+--- AppAssociatedFileTypes:
+ExampleProgramFile
+WMP11.AssocFile.MIDI
+exefile
+---
+license: GNU General Public License v3
+         language: DE
+creating environment:
+copying files...
+creating AppUninstReg: 'uninstr455857993'
+writing instruction file 1/2...
+generating instructions from directory structure of Testsuite\Example Program:
+generating instructions from files inside Testsuite\Example Program:
+0: appinfo.ini
+1: changes.txt
+2: example_icon.ico
+3: filetypeinfo.ini
+4: init.ahk
+5: list.txt
+6: start.exe
+7: Template.expf
+8: uninstf
+9: Update Test.ahk
+10: Uninstall.exe (obligatory)
+writing instruction file 2/2...
+----- instruction output -----
+instr_count := 0
+instr_amount := 12
+Gui,Submit,NoHide
+log("Preparing...")
+log(label11 . "\appinfo.ini")
+FileInstall,appinfo.ini, % label11 . "\appinfo.ini",1
+instr_count++, progress := floor(100*(instr_count/instr_amount))
+prog(progress)
+GuiControl,, label15, %progress% `%
+log(label11 . "\changes.txt")
+FileInstall,changes.txt, % label11 . "\changes.txt",1
+instr_count++, progress := floor(100*(instr_count/instr_amount))
+prog(progress)
+GuiControl,, label15, %progress% `%
+log(label11 . "\example_icon.ico")
+FileInstall,example_icon.ico, % label11 . "\example_icon.ico",1
+instr_count++, progress := floor(100*(instr_count/instr_amount))
+prog(progress)
+GuiControl,, label15, %progress% `%
+log(label11 . "\filetypeinfo.ini")
+FileInstall,filetypeinfo.ini, % label11 . "\filetypeinfo.ini",1
+instr_count++, progress := floor(100*(instr_count/instr_amount))
+prog(progress)
+GuiControl,, label15, %progress% `%
+log(label11 . "\init.ahk")
+FileInstall,init.ahk, % label11 . "\init.ahk",1
+instr_count++, progress := floor(100*(instr_count/instr_amount))
+prog(progress)
+GuiControl,, label15, %progress% `%
+log(label11 . "\list.txt")
+FileInstall,list.txt, % label11 . "\list.txt",1
+instr_count++, progress := floor(100*(instr_count/instr_amount))
+prog(progress)
+GuiControl,, label15, %progress% `%
+log(label11 . "\start.exe")
+FileInstall,start.exe, % label11 . "\start.exe",1
+instr_count++, progress := floor(100*(instr_count/instr_amount))
+prog(progress)
+GuiControl,, label15, %progress% `%
+log(label11 . "\Template.expf")
+FileInstall,Template.expf, % label11 . "\Template.expf",1
+instr_count++, progress := floor(100*(instr_count/instr_amount))
+prog(progress)
+GuiControl,, label15, %progress% `%
+log(label11 . "\uninstf")
+FileInstall,uninstf, % label11 . "\uninstf",1
+instr_count++, progress := floor(100*(instr_count/instr_amount))
+prog(progress)
+GuiControl,, label15, %progress% `%
+log(label11 . "\Update Test.ahk")
+FileInstall,Update Test.ahk, % label11 . "\Update Test.ahk",1
+instr_count++, progress := floor(100*(instr_count/instr_amount))
+prog(progress)
+GuiControl,, label15, %progress% `%
+log(label11 . "\Uninstall.exe")
+FileInstall,Uninstall.exe, % label11 . "\Uninstall.exe",1
+instr_count++, progress := floor(100*(instr_count/instr_amount))
+prog(progress)
+GuiControl,, label15, %progress% `%
+if (SetupTypeNormal) {
+log("Registry...")
+AppKey := "SOFTWARE\Example Program"
+UninstallKey := "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Example Program"
+AppPathKey := "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\start.exe"
+SetRegView % (A_Is64bitOS ? 64 : 32)
+RegWrite REG_SZ, HKLM, %AppKey%, InstallDir, %label11%
+RegWrite REG_SZ, HKLM, %AppKey%, Version, %CONST_SETUP_APPVERSION%
+RegWrite REG_SZ, HKLM, %UninstallKey%, DisplayName, %CONST_SETUP_TITLE%
+RegWrite REG_SZ, HKLM, %UninstallKey%, UninstallString, "%label11%\Uninstall.exe"
+RegWrite REG_SZ, HKLM, %UninstallKey%, DisplayIcon, "%label11%\start.exe"
+RegWrite REG_SZ, HKLM, %UninstallKey%, DisplayVersion, %CONST_SETUP_APPVERSION%
+RegWrite REG_SZ, HKLM, %UninstallKey%, URLInfoAbout, %CONST_SETUP_APPWEBSITE%
+RegWrite REG_SZ, HKLM, %UninstallKey%, Publisher, %CONST_SETUP_APPAUTHORNAME%
+RegWrite REG_DWORD, HKLM, %UninstallKey%, NoModify, 1
+RegWrite REG_SZ, HKLM, %AppPathKey%,, %label11%\start.exe
+RegRead, null, HKCR, .expf
+ExtensionIsAppProperty := ErrorLevel
+RegRead, null, HKCR, ExampleProgramFile
+TypeIsAppProperty := (ErrorLevel && ExtensionIsAppProperty)
+if !TypeIsAppProperty
+{
+RegRead, TypeOwner, HKCR, ExampleProgramFile,Owner
+TypeIsAppProperty := (TypeOwner == CONST_SETUP_APPID)
+}
+if TypeIsAppProperty
+{
+RegWrite, REG_SZ, HKCR, ExampleProgramFile,Owner,%CONST_SETUP_APPID%
+}
+if TypeIsAppProperty
+{
+RegWrite REG_SZ, HKCR, .expf,, ExampleProgramFile
+FileAppend, `nHKCR\.expf, %label11%\uninstr455857993
+FileAppend, `nHKCR\ExampleProgramFile, %label11%\uninstr455857993
+FileAppend, `n%A_WinDir%\ShellNew\Template.expf, %label11%\uninstf
+FileInstall, Template.expf, %A_WinDir%\ShellNew\Template.expf, 1
+RegWrite, REG_SZ, HKCR, .expf\ShellNew, FileName, Template.expf
+RegWrite REG_SZ, HKCR, ExampleProgramFile,, ExampleProgram Resource
+RegWrite REG_SZ, HKCR, ExampleProgramFile\DefaultIcon,, %label11%\example_icon.ico
+RegWrite REG_SZ, HKCR, ExampleProgramFile\Shell\,,Test
+}
+FileAppend, `nHKCR\ExampleProgramFile\Shell\Change, %label11%\uninstr455857993
+RegWrite REG_SZ, HKCR, ExampleProgramFile\Shell\Change,,Change this resource
+MenuCommand="notepad.exe" "`%1"
+RegWrite REG_SZ, HKCR, ExampleProgramFile\Shell\Change\Command,,%MenuCommand%
+FileAppend, `nHKCR\ExampleProgramFile\Shell\Test, %label11%\uninstr455857993
+RegWrite REG_SZ, HKCR, ExampleProgramFile\Shell\Test,,Test it!
+MenuCommand="start.exe" "`%1"
+RegWrite REG_SZ, HKCR, ExampleProgramFile\Shell\Test\Command,,%MenuCommand%
+RegRead, null, HKCR, .midi
+ExtensionIsAppProperty := ErrorLevel
+RegRead, null, HKCR, WMP11.AssocFile.MIDI
+TypeIsAppProperty := (ErrorLevel && ExtensionIsAppProperty)
+if !TypeIsAppProperty
+{
+RegRead, TypeOwner, HKCR, WMP11.AssocFile.MIDI,Owner
+TypeIsAppProperty := (TypeOwner == CONST_SETUP_APPID)
+}
+if TypeIsAppProperty
+{
+RegWrite, REG_SZ, HKCR, WMP11.AssocFile.MIDI,Owner,%CONST_SETUP_APPID%
+}
+if TypeIsAppProperty
+{
+RegWrite REG_SZ, HKCR, .midi,, WMP11.AssocFile.MIDI
+FileAppend, `nHKCR\.midi, %label11%\uninstr455857993
+FileAppend, `nHKCR\WMP11.AssocFile.MIDI, %label11%\uninstr455857993
+RegWrite REG_SZ, HKCR, WMP11.AssocFile.MIDI,, MIDI Sequence
+RegWrite REG_SZ, HKCR, WMP11.AssocFile.MIDI\Shell\,,
+}
+RegRead, null, HKCR, .exe
+ExtensionIsAppProperty := ErrorLevel
+RegRead, null, HKCR, exefile
+TypeIsAppProperty := (ErrorLevel && ExtensionIsAppProperty)
+if !TypeIsAppProperty
+{
+RegRead, TypeOwner, HKCR, exefile,Owner
+TypeIsAppProperty := (TypeOwner == CONST_SETUP_APPID)
+}
+if TypeIsAppProperty
+{
+RegWrite, REG_SZ, HKCR, exefile,Owner,%CONST_SETUP_APPID%
+}
+if TypeIsAppProperty
+{
+RegWrite REG_SZ, HKCR, .exe,, exefile
+FileAppend, `nHKCR\.exe, %label11%\uninstr455857993
+FileAppend, `nHKCR\exefile, %label11%\uninstr455857993
+RegWrite REG_SZ, HKCR, exefile,, Application
+RegWrite REG_SZ, HKCR, exefile\Shell\,,
+}
+FileAppend, `nHKCR\exefile\Shell\exampr, %label11%\uninstr455857993
+RegWrite REG_SZ, HKCR, exefile\Shell\exampr,,Example Prog
+MenuCommand="`%1"
+RegWrite REG_SZ, HKCR, exefile\Shell\exampr\Command,,%MenuCommand%
+}
+instr_count++
+progress := 100
+prog(progress)
+GuiControl,, label15, %progress% `%
+------------------------------
+processing:
+adding setup_template...
+instructions to file...
+license to file...
+changelog to file...
+adding uninstaller:
+generating Uninstall.exe from template...
+compiling uninstaller...
+adding uninstall starter...
+compiling setup... (0)
+build completed! Setup file saved as: Testsuite\Destination\EP_Setup.exe
+removing temporary files...
+---
+build.exe is terminated

@@ -1,0 +1,1 @@
+﻿MsgBox % "I am the initialization script! The current setup type is: " . SetupTypeNormal ? "Normal" : "Portable"
