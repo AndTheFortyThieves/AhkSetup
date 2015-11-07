@@ -1,3 +1,14 @@
+/*
+	AhkSetup
+	file:		build.ahk
+	author:		Leonard Kupper
+	release:	07.11.15
+	------------------------------------
+	build.exe console program source
+*/
+
+;Initialization
+
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 SetBatchLines, -1
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -436,6 +447,8 @@ FileAppend, % template_content, build/Uninstall.ahk
 RunWait, %AhkRoot%\Compiler\Ahk2Exe.exe /in "%A_WorkingDir%\build\Uninstall.ahk" /out "%A_WorkingDir%\build\Uninstall.exe" /icon "%AppIcon%"
 
 console_log("compiling setup... ")
+
+;TODO: Ahk2Exe should be included into AhkSetup for portability and consistency
 
 RunWait, %AhkRoot%\Compiler\Ahk2Exe.exe /in "%A_WorkingDir%\build\%uniquename%.ahk" /out "%destination%" /icon "%AppIcon%"
 
